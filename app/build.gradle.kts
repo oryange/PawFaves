@@ -59,6 +59,16 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // Retrofit and configs
+    implementation(libs.squareup.retrofit)
+    implementation(libs.squareup.gson)
+    implementation(libs.squareup.okhttp)
+    implementation(libs.google.gson)
+
+    // images
+    implementation(libs.squareup.picasso)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
