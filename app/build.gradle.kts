@@ -37,6 +37,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        viewBinding = true
         compose = true
     }
     composeOptions {
@@ -59,15 +60,22 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.google.material)
+    implementation(libs.androidx.viewmodel)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.appcompat)
 
     // Retrofit and configs
     implementation(libs.squareup.retrofit)
-    implementation(libs.squareup.gson)
+    implementation(libs.squareup.retrofit.converter)
     implementation(libs.squareup.okhttp)
     implementation(libs.google.gson)
 
+
     // images
     implementation(libs.squareup.picasso)
+    implementation(libs.androidx.activity)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

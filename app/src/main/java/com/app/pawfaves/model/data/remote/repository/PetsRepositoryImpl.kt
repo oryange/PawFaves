@@ -7,7 +7,7 @@ import com.app.pawfaves.model.data.remote.service.PawFavService
 import com.app.pawfaves.utils.ResultState
 import retrofit2.Response
 
-internal class PetsRepositoryImpl(private val pawFavService: PawFavService) : PawFavRepository {
+internal class PawFavRepositoryImpl(private val pawFavService: PawFavService) : PawFavRepository {
     override suspend fun getAllBreeds(): ResultState<AllBreedsResponse> {
         return try {
             val response = pawFavService.getAllBreeds()

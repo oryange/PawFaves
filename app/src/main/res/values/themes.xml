@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base application theme. -->
+    <style name="Theme.App" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/pink</item>
+        <item name="colorPrimaryVariant">@color/pinkDark</item>
+        <item name="colorOnPrimary">@color/white</item>
 
-    <style name="Theme.PawFaves" parent="android:Theme.Material.Light.NoActionBar" />
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/yellow</item>
+        <item name="colorSecondaryVariant">@color/yellowDark</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Outras configurações do tema -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>
