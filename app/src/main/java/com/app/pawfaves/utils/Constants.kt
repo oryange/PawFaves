@@ -8,4 +8,5 @@ object Constants {
     const val BREED_HOUND = "hound"
     const val KEY_SHARED_PREFERENCES = "app_preferences"
     const val KEY_PREFERENCES = "item_list"
+    const val EMPTY = ""
 }

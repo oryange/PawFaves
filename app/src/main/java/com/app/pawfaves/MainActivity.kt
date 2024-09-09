@@ -10,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.app.pawfaves.databinding.ActivityHomeBinding
 import com.app.pawfaves.model.data.remote.RetrofitConfig
 import com.app.pawfaves.model.data.remote.repository.PawFavRepositoryImpl
+import com.app.pawfaves.utils.Constants
 import com.app.pawfaves.utils.Constants.BREED_AKITA
 import com.app.pawfaves.utils.Constants.BREED_BULLDOG
 import com.app.pawfaves.utils.Constants.BREED_HOUND
 import com.app.pawfaves.utils.Constants.BREED_KEY
 import com.app.pawfaves.utils.Constants.BREED_LABRADOR
+import com.app.pawfaves.utils.Constants.EMPTY
 import com.app.pawfaves.view.breed.BreedListActivity
 import com.app.pawfaves.view.favorite.FavoriteActivity
 import com.app.pawfaves.viewmodel.HomeViewModel
@@ -39,6 +41,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setListeners()
         setupSpinner()
+    }
+
+    private fun calculeteAge() {
+        val age = binding.ageEditText.text.toString()
+        if (age.isEmpty()) {
+            binding.ageResultTextView.text = EMPTY
+            return
+        }
+        val result = age.toInt() * 7
+        binding.ageResultTextView.text = getString(R.string.message_calculate, result)
     }
 
     private fun setupSpinner() {
@@ -91,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         binding.bulldog.setOnClickListener { onClickBreeds(BREED_BULLDOG) }
         binding.hound.setOnClickListener { onClickBreeds(BREED_HOUND) }
         binding.toolbarFavorite.setOnClickListener { onClickFavorite() }
+        binding.calculateButton.setOnClickListener { calculeteAge() }
     }
 
     private fun onClickBreeds(breed: String) {

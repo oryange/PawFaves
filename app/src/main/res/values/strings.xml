@@ -2,6 +2,9 @@
     <string name="app_name">PawFaves</string>
     <string name="label_some_breeds">Some Breeds</string>
     <string name="label_random_dog">Random Dog</string>
+    <string name="label_calculate">Calculate</string>
+    <string name="message_calculate">In human years, your pet is %d years old!</string>
+    <string name="label_pet_age">In human years, how old is your pet?</string>
     <string name="error_breeds_not_found">Breeds not found</string>
     <string name="prompt_select_breed">Select a breed</string>
     <string name="message_favorites_list_empty">Your favorites list is currently empty. Add some pets to start your collection!</string>

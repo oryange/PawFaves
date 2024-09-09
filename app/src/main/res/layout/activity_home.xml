@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_favorite"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_5m"
+        android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,8 +33,8 @@
     <Spinner
         android:id="@+id/action_bar_spinner"
         android:layout_width="300dp"
-        android:layout_height="@dimen/_6m"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/border_spinner"
         android:entries="@array/options"
         android:theme="@style/SpinnerTextStyle"
@@ -46,7 +46,7 @@
         android:id="@+id/some_breeds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/label_some_breeds"
         android:theme="@style/fontDefault"
         app:layout_constraintBottom_toTopOf="@+id/images_some_breeds"
@@ -59,12 +59,12 @@
         android:id="@+id/images_some_breeds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_favorite">
+        app:layout_constraintTop_toBottomOf="@+id/some_breeds">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -132,35 +132,86 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="120dp"
         android:indeterminateTint="@color/pinkDark"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_favorite" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/label_random_dog"
         android:theme="@style/fontDefault"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/images_some_breeds" />
+        app:layout_constraintTop_toBottomOf="@+id/calculate_button" />
 
     <ImageView
         android:id="@+id/random_dog"
         android:layout_width="@dimen/_25m"
         android:layout_height="@dimen/_25m"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/border_image"
         android:padding="8dp"
         android:src="@drawable/ic_image_default"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+
+    <TextView
+        android:id="@+id/age_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/label_pet_age"
+        android:theme="@style/fontDefault"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/images_some_breeds" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/age_textView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/age_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_calculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_input_layout" />
+
+    <TextView
+        android:id="@+id/age_result_textView"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:breakStrategy="high_quality"
+        app:layout_constraintBottom_toBottomOf="@+id/calculate_button"
+        app:layout_constraintStart_toEndOf="@+id/text_input_layout"
+        app:layout_constraintTop_toTopOf="@+id/text_input_layout"
+        tools:text="Seu pet tem 30 anos em idade humana!" />
 </androidx.constraintlayout.widget.ConstraintLayout>
