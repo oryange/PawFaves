@@ -16,7 +16,6 @@ import com.app.pawfaves.utils.Constants.BREED_BULLDOG
 import com.app.pawfaves.utils.Constants.BREED_HOUND
 import com.app.pawfaves.utils.Constants.BREED_KEY
 import com.app.pawfaves.utils.Constants.BREED_LABRADOR
-import com.app.pawfaves.utils.Constants.EMPTY
 import com.app.pawfaves.view.breed.BreedListActivity
 import com.app.pawfaves.view.favorite.FavoriteActivity
 import com.app.pawfaves.viewmodel.HomeViewModel
@@ -25,8 +24,6 @@ import com.squareup.picasso.Picasso
 
 class HomeActivity : AppCompatActivity() {
     private val spinnerValues = mutableListOf<String>()
-    private lateinit var spinnerAdapter: ArrayAdapter<String>
-    private var isFirstSelection = true
 
     private val homeViewModel: HomeViewModel by viewModels {
         HomeViewModelFactory(PawFavRepositoryImpl(RetrofitConfig.getApiService()))
@@ -39,71 +36,87 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupObservers()
         setListeners()
         setupSpinner()
-    }
-
-    private fun ageCalculator() {
-        val age = binding.ageEditText.text.toString()
-        if (age.isEmpty() || age.toInt() == 0) {
-            binding.ageResultTextView.text = EMPTY
-            return
-        }
-        val result = age.toInt() * 7
-        binding.ageResultTextView.text = getString(R.string.message_calculate, result)
-    }
-
-    private fun setupSpinner() {
-        spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerValues)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        val spinner = binding.actionBarSpinner
-        spinner.adapter = spinnerAdapter
-
-        getBreedListForSpinner()
-        itemSelectorConfiguration()
-    }
-
-    private fun getBreedListForSpinner() {
         homeViewModel.getAllBreeds()
-        homeViewModel.allBreedsList.observe(this) { list ->
-            if (list != null) {
-                spinnerValues.addAll(list)
-                spinnerAdapter.notifyDataSetChanged()
-            }
-        }
     }
 
-    private fun itemSelectorConfiguration() {
-        val spinner = binding.actionBarSpinner
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (isFirstSelection) {
-                    isFirstSelection = false
-                    return
-                }
-                val selectedValue = spinnerValues[position]
-                onClickBreeds(selectedValue)
-            }
+    private fun setupObservers() {
+        homeViewModel.ageResult.observe(this) { age ->
+            binding.ageResultTextView.text = age
+        }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Not implemented
+        homeViewModel.randomDog.observe(this) { breed ->
+            if (!breed.isNullOrEmpty()) {
+                binding.progressBar.visibility = View.GONE
+                binding.randomDog.visibility = View.VISIBLE
+                Picasso.get().load(breed).into(binding.randomDog)
+            } else {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.randomDog.visibility = View.GONE
             }
         }
     }
 
     private fun setListeners() {
-        binding.randomDog.setOnClickListener { onClickRandom() }
-        binding.labrador.setOnClickListener { onClickBreeds(BREED_LABRADOR) }
-        binding.akita.setOnClickListener { onClickBreeds(BREED_AKITA) }
-        binding.bulldog.setOnClickListener { onClickBreeds(BREED_BULLDOG) }
-        binding.hound.setOnClickListener { onClickBreeds(BREED_HOUND) }
+
+        val breedClickListener = View.OnClickListener { view ->
+            val breed = when (view.id) {
+                R.id.labrador -> BREED_LABRADOR
+                R.id.akita -> BREED_AKITA
+                R.id.bulldog -> BREED_BULLDOG
+                R.id.hound -> BREED_HOUND
+                else -> null
+            }
+            breed?.let { onClickBreeds(it) }
+        }
+
+        binding.randomDog.setOnClickListener { homeViewModel.getRandom() }
+        binding.labrador.setOnClickListener(breedClickListener)
+        binding.akita.setOnClickListener(breedClickListener)
+        binding.bulldog.setOnClickListener(breedClickListener)
+        binding.hound.setOnClickListener(breedClickListener)
         binding.fabFavorites.setOnClickListener { onClickFavorite() }
-        binding.calculateButton.setOnClickListener { ageCalculator() }
+        binding.calculateButton.setOnClickListener {
+            val age = binding.ageEditText.text.toString()
+            homeViewModel.ageCalculator(age)
+        }
+    }
+
+    private fun setupSpinner() {
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerValues)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.actionBarSpinner.adapter = spinnerAdapter
+
+
+        homeViewModel.allBreedsList.observe(this) { list ->
+            if (!list.isNullOrEmpty()) {
+                spinnerAdapter.clear()
+                spinnerValues.addAll(list)
+                spinnerAdapter.notifyDataSetChanged()
+            }
+        }
+
+        var isFirstSelection = true
+        binding.actionBarSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (isFirstSelection) {
+                        isFirstSelection = false
+                        return
+                    }
+                    val selectedValue = spinnerValues[position]
+                    onClickBreeds(selectedValue)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
     }
 
     private fun onClickBreeds(breed: String) {
@@ -115,20 +128,5 @@ class HomeActivity : AppCompatActivity() {
     private fun onClickFavorite() {
         intent = Intent(this, FavoriteActivity::class.java)
         startActivity(intent)
-    }
-
-    private fun onClickRandom() {
-        homeViewModel.getRandom()
-        val randomDogImageView = binding.randomDog
-        homeViewModel.randomDog.observe(this) { breed ->
-            if (breed != null) {
-                binding.progressBar.visibility = View.GONE
-                binding.randomDog.visibility = View.VISIBLE
-                Picasso.get().load(breed).into(randomDogImageView)
-            } else {
-                binding.progressBar.visibility = View.VISIBLE
-                binding.randomDog.visibility = View.GONE
-            }
-        }
     }
 }

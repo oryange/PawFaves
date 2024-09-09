@@ -18,6 +18,13 @@
     </style>
 
 
+    <style name="text_age" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">36sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/pinkDark</item>
+        <item name="android:background">@drawable/background_paw</item>
+    </style>
+
     <style name="customTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/pink</item>
         <item name="hintTextColor">@color/pinkDark</item>

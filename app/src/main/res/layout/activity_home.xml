@@ -129,18 +129,17 @@
 
         </LinearLayout>
 
-
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:indeterminateTint="@color/pinkDark"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar_favorite" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView"
@@ -159,7 +158,6 @@
             android:layout_height="@dimen/_25m"
             android:layout_marginTop="@dimen/_1m"
             android:layout_marginBottom="@dimen/_1m"
-
             android:background="@drawable/border_image"
             android:padding="@dimen/_1m"
             android:src="@drawable/ic_image_default"
@@ -168,8 +166,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:ignore="ContentDescription" />
-
+            tools:ignore="ContentDescription"
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/age_textView"
@@ -217,13 +215,11 @@
             android:layout_marginStart="@dimen/_3_5m"
             android:layout_marginTop="@dimen/_1m"
             android:background="@drawable/background_paw"
-            android:gravity="center"
-            android:textColor="@color/pinkDark"
+            android:theme="@style/text_age"
             app:layout_constraintBottom_toBottomOf="@+id/calculate_button"
             app:layout_constraintStart_toEndOf="@+id/text_input_layout"
             app:layout_constraintTop_toTopOf="@+id/text_input_layout"
-            tools:text="Seu pet tem 30 anos em idade humana!" />
-
+            tools:text="30" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_favorites"
