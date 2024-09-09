@@ -1,230 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_favorite"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/white" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/select_breed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/prompt_select_breed"
-        android:theme="@style/fontDefault"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_favorite" />
-
-    <Spinner
-        android:id="@+id/action_bar_spinner"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/border_spinner"
-        android:entries="@array/options"
-        android:theme="@style/SpinnerTextStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_breed" />
-
-    <TextView
-        android:id="@+id/some_breeds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/label_some_breeds"
-        android:theme="@style/fontDefault"
-        app:layout_constraintBottom_toTopOf="@+id/images_some_breeds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/action_bar_spinner"
-        app:layout_constraintVertical_bias="0" />
-
-    <LinearLayout
-        android:id="@+id/images_some_breeds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_breeds">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/labrador"
-                android:layout_width="@dimen/_15m"
-                android:layout_height="@dimen/_15m"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="4dp"
-                android:background="@drawable/border_image"
-                android:padding="8dp"
-                android:src="@drawable/ic_labrador" />
-
-            <ImageView
-                android:id="@+id/bulldog"
-                android:layout_width="@dimen/_15m"
-                android:layout_height="@dimen/_15m"
-                android:layout_below="@id/labrador"
-                android:layout_alignParentStart="true"
-                android:layout_margin="4dp"
-                android:background="@drawable/border_image"
-                android:padding="8dp"
-                android:src="@drawable/ic_bulldog" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/akita"
-                android:layout_width="@dimen/_15m"
-                android:layout_height="@dimen/_15m"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="4dp"
-                android:background="@drawable/border_image"
-                android:padding="4dp"
-                android:src="@drawable/ic_akita" />
-
-            <ImageView
-                android:id="@+id/hound"
-                android:layout_width="@dimen/_15m"
-                android:layout_height="@dimen/_15m"
-                android:layout_below="@id/akita"
-                android:layout_alignParentStart="true"
-                android:layout_margin="4dp"
-                android:background="@drawable/border_image"
-                android:padding="4dp"
-                android:src="@drawable/ic_hound" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/pinkDark"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar_favorite" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/label_random_dog"
-        android:theme="@style/fontDefault"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculate_button" />
-
-    <ImageView
-        android:id="@+id/random_dog"
-        android:layout_width="@dimen/_25m"
-        android:layout_height="@dimen/_25m"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/border_image"
-        android:padding="8dp"
-        android:src="@drawable/ic_image_default"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-
-    <TextView
-        android:id="@+id/age_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/label_pet_age"
-        android:theme="@style/fontDefault"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/images_some_breeds" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age_textView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/age_edit_text"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_favorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:background="?attr/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white" />
 
-    <Button
-        android:id="@+id/calculate_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/label_calculate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_input_layout" />
+        <TextView
+            android:id="@+id/select_breed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2m"
+            android:text="@string/prompt_select_breed"
+            android:theme="@style/fontDefault"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_favorite" />
 
-    <TextView
-        android:id="@+id/age_result_textView"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        <Spinner
+            android:id="@+id/action_bar_spinner"
+            android:layout_width="@dimen/_30m"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1m"
+            android:background="@drawable/border_spinner"
+            android:entries="@array/options"
+            android:theme="@style/SpinnerTextStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_breed" />
 
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:breakStrategy="high_quality"
-        app:layout_constraintBottom_toBottomOf="@+id/calculate_button"
-        app:layout_constraintStart_toEndOf="@+id/text_input_layout"
-        app:layout_constraintTop_toTopOf="@+id/text_input_layout"
-        tools:text="Seu pet tem 30 anos em idade humana!" />
+        <TextView
+            android:id="@+id/some_breeds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4m"
+            android:text="@string/label_some_breeds"
+            android:theme="@style/fontDefault"
+            app:layout_constraintBottom_toTopOf="@+id/images_some_breeds"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar_spinner" />
+
+        <LinearLayout
+            android:id="@+id/images_some_breeds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1m"
+            android:baselineAligned="false"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/some_breeds">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/labrador"
+                    android:layout_width="@dimen/_15m"
+                    android:layout_height="@dimen/_15m"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="@dimen/_0_5m"
+                    android:background="@drawable/border_image"
+                    android:padding="@dimen/_1m"
+                    android:src="@drawable/ic_labrador" />
+
+                <ImageView
+                    android:id="@+id/bulldog"
+                    android:layout_width="@dimen/_15m"
+                    android:layout_height="@dimen/_15m"
+                    android:layout_below="@id/labrador"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="@dimen/_0_5m"
+                    android:background="@drawable/border_image"
+                    android:padding="@dimen/_1m"
+                    android:src="@drawable/ic_bulldog" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/akita"
+                    android:layout_width="@dimen/_15m"
+                    android:layout_height="@dimen/_15m"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="@dimen/_0_5m"
+                    android:background="@drawable/border_image"
+                    android:padding="@dimen/_0_5m"
+                    android:src="@drawable/ic_akita" />
+
+                <ImageView
+                    android:id="@+id/hound"
+                    android:layout_width="@dimen/_15m"
+                    android:layout_height="@dimen/_15m"
+                    android:layout_below="@id/akita"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="@dimen/_0_5m"
+                    android:background="@drawable/border_image"
+                    android:padding="@dimen/_0_5m"
+                    android:src="@drawable/ic_hound" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_favorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_favorite_empty"
-        app:backgroundTint="@color/pink"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/pinkDark"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar_favorite" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4m"
+            android:text="@string/label_random_dog"
+            android:theme="@style/fontDefault"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calculate_button" />
+
+        <ImageView
+            android:id="@+id/random_dog"
+            android:layout_width="@dimen/_25m"
+            android:layout_height="@dimen/_25m"
+            android:layout_marginTop="@dimen/_1m"
+            android:layout_marginBottom="@dimen/_1m"
+
+            android:background="@drawable/border_image"
+            android:padding="@dimen/_1m"
+            android:src="@drawable/ic_image_default"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/age_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3_5m"
+            android:layout_marginTop="@dimen/_4m"
+            android:layout_marginEnd="@dimen/_3_5m"
+            android:text="@string/label_pet_age"
+            android:theme="@style/fontDefault"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/images_some_breeds" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout"
+            android:layout_width="@dimen/_10m"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/age_textView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/age_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/calculate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1m"
+            android:text="@string/label_calculate"
+            android:theme="@style/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout" />
+
+        <TextView
+            android:id="@+id/age_result_textView"
+            android:layout_width="@dimen/_10m"
+            android:layout_height="@dimen/_10m"
+            android:layout_marginStart="@dimen/_3_5m"
+            android:layout_marginTop="@dimen/_1m"
+            android:background="@drawable/background_paw"
+            android:gravity="center"
+            android:textColor="@color/pinkDark"
+            app:layout_constraintBottom_toBottomOf="@+id/calculate_button"
+            app:layout_constraintStart_toEndOf="@+id/text_input_layout"
+            app:layout_constraintTop_toTopOf="@+id/text_input_layout"
+            tools:text="Seu pet tem 30 anos em idade humana!" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2m"
+            android:layout_marginBottom="@dimen/_4m"
+            android:src="@drawable/ic_favorite_empty"
+            app:backgroundTint="@color/pink"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
