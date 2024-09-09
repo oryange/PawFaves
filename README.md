@@ -17,4 +17,6 @@ Você pode entrar em contato com a desenvolvedora para obter mais informações 
 
 
 ## App na Prática
-WIP
+
+https://github.com/user-attachments/assets/1089655b-9258-496f-a213-ca6ac9319454
+
