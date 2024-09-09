@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         binding.akita.setOnClickListener { onClickBreeds(BREED_AKITA) }
         binding.bulldog.setOnClickListener { onClickBreeds(BREED_BULLDOG) }
         binding.hound.setOnClickListener { onClickBreeds(BREED_HOUND) }
-        binding.toolbarFavorite.setOnClickListener { onClickFavorite() }
+        binding.fabFavorites.setOnClickListener { onClickFavorite() }
         binding.calculateButton.setOnClickListener { calculeteAge() }
     }
 
